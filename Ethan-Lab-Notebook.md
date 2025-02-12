@@ -77,3 +77,11 @@ Don’t forget microcontroller programmer
 FILL THE Gaps
 
 find which H bridge to use
+
+### 2/11 TA meeting notes
+
+team 1 fall 2022 charm
+label all signals in the system (DC/AC/Wifi, etc)
+separate the subsystem requirements
+	ensure that the requirements are for the whole subsystem, not a component
+	quantative requirements
