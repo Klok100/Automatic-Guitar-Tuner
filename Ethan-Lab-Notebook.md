@@ -80,8 +80,10 @@ find which H bridge to use
 
 ### 2/11 TA meeting notes
 
-team 1 fall 2022 charm
+team 1 fall 2022 [charm](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=20868)
+
 label all signals in the system (DC/AC/Wifi, etc)
+
 separate the subsystem requirements
 	ensure that the requirements are for the whole subsystem, not a component
 	quantative requirements
