@@ -110,6 +110,13 @@ Send signals to H-bridge to tune
 pick motor carefully to avoid damage to guitar, less than .5 Nm (ideally .1-.3 nM), depends on string tension
 
 
-### Design Review Notes (2/17)
+### Peer Design Review Notes (2/17)
+
+battery considerations (how long will the battery last?), voltage for our motors / chips? (3.3?), more detail in our subsystem recs
+
+detailed tolerance analysis - temperature?
+
+safety - 445 guidelines - 
+
 
 
