@@ -87,3 +87,29 @@ label all signals in the system (DC/AC/Wifi, etc)
 separate the subsystem requirements
 	ensure that the requirements are for the whole subsystem, not a component
 	quantative requirements
+
+### Implementation notes pre design review
+
+**High Level Process**
+
+Put piezo on the guitar, need solid connection to accurately get the vibrations
+	Make sure piezo's usable range matches the guitar range, not within the resonany frequency area
+
+Put signal through an op-amp with a gain of 20db, then feed to ADC pin of the STM32
+
+Sample at 10 kHz (Nyquist) since highest freq we want is ~5kHz
+
+FFT at max definition we can for our chip
+
+Compare FFT to guitar normal frange frequencies, identify which strings need to go which directions
+
+Send signals to H-bridge to tune
+
+**other considerations**
+
+pick motor carefully to avoid damage to guitar, less than .5 Nm (ideally .1-.3 nM), depends on string tension
+
+
+### Design Review Notes (2/17)
+
+
