@@ -1,7 +1,7 @@
 # Senior Design Parts
 ## Power Subsystem:
 #### Battery: 9V 
-#### Voltage Regulator: AZ1117CD-3.3TRG1 (Electronics Service Shop)
+#### Voltage Regulator: AP2112K-3.3TRG1 (Electronics Service Shop)
 
 ## Motor Subsystem:
 #### H-Bridge: L298N (Self-Service Inventory)
