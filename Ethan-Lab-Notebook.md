@@ -118,5 +118,14 @@ detailed tolerance analysis - temperature?
 
 safety - 445 guidelines - 
 
+### TA meeting 1 - 2/27
 
+Purchasing materials from three places
+	Electronic service shop - mainly passive components
+ 	Supply Center - power cables, jumpers, etc
+  	Online order - My.ece - mcmaster or other vendors
+   		use vendors already in the system
+The rounds of PCB order are not mandatory
+	Get whatever one we can order
+ Kit 91 18-36-48 Locker J1
 
