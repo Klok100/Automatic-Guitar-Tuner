@@ -1,7 +1,8 @@
 # Senior Design Parts
 ## Power Subsystem:
 #### Battery: 9V 
-#### Voltage Regulator: AP2112K-3.3TRG1 (Electronics Service Shop)
+#### 3.3 Voltage Regulator: AP2112K-3.3TRG1 (Electronics Service Shop)
+#### 5 Voltage Regulator: TPS7A2050PDBVR (Electronics Service Shop)
 
 ## Motor Subsystem:
 #### H-Bridge: L298N (Self-Service Inventory)
