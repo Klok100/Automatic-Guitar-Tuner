@@ -129,3 +129,5 @@ The rounds of PCB order are not mandatory
 	Get whatever one we can order
  Kit 91 18-36-48 Locker J1
 
+### 3D Printing info
+[tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
