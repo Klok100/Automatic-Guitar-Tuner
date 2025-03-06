@@ -131,3 +131,16 @@ The rounds of PCB order are not mandatory
 
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
+
+###TA meeting 2 3/6
+getting the PCB - make account on PCBway and upload the gerber - wait for PCBWAY to approve it and send screenshot of approval to our TA. Also send TA the schematic with the gerber if we're ahead of time and he can double check it.
+
+professor meeting - breadboard demo doesn't have to be complete functonality but at least one subsystem has to be ready
+
+breadboard demo rubric has been uploaded! follow that and pander
+
+proposals have been graded, design doc no specific guidance
+
+for throughholes without footprints we can use a soldering pad and drill a hole through it, PCBway can drill the holes for us
+
+
