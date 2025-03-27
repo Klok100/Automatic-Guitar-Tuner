@@ -225,3 +225,19 @@
 
 ## Helpful Links
 
+### Datasheets
+- Power Subsystem
+  - 3.3V Voltage Regulator: [LM2937-3.3](https://rocelec.widen.net/view/pdf/oggg0ilb2c/NATLS20760-1.pdf?t.download=true&u=5oefqw%5D)
+  - 5V Voltage Regulator: [μA7805](https://www.ti.com/lit/ds/symlink/ua78.pdf)
+- Motor Subsystem
+  - H-Bridge: [L298N](https://www.st.com/resource/en/datasheet/l298.pdf)
+- Processing Subsystem
+  - Microcontroller: [STM32H7B0RBT6](https://www.st.com/resource/en/datasheet/stm32h7b0rb.pdf)
+- Vibration-Sensing Subsystem
+  - Signal Amplifier: [LM386N-1](https://www.ti.com/lit/ds/symlink/lm386.pdf)
+
+### Microcontroller Guides 
+
+### Similar Projects
+
+### Misc
