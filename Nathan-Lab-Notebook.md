@@ -43,7 +43,7 @@
 - Current Parts List:
   - Power Subsystem:
     - 9V Battery
-    - Step Down Voltage Regulator (LM317T)
+    - 5V Voltage Regulator (LM317T)
   - Motor Subsystem
     - Motors (ROB-11696)
     - H-Bridges (4489)
@@ -88,11 +88,140 @@
 
 ## Week 5
 
+### (2/17/2025)
+- Completed Peer Proposal Review (Automatic Card Shuffler)
+- Decided to use the STM32H7B0RBT6 microcontroller ([Datasheet](https://github.com/user-attachments/files/19480645/stm32h7b0rb.pdf)) 
+  - Designed for high performance --> important for fast tuning algorithm
+  - Includes a full set of DSP instructions
+  - Built-in ADC and Motor Control pins
+- Updated Project Proposal for the Proposal Review
+  - The microcontroller runs at 3.3V so we need both a 3.3V and 5V Voltage Regulator
+  - Updated Parts List:
+    - Added 3.3 Voltage Regulator (AZ1117CD-3.3TRG1)
+    - Replaced motors for a higher torque output (ROB-11696 --> GA12-N20)
+  - Added a Battery Analysis of the entire system with the added/updated parts:
+    | Component                   | Quantity | Voltage    | Current per Unit | Total Current |
+    | --------------------------- | -------- | ---------- | ---------------- | ------------- |
+    | STM32 Microcontroller       | 1        | 3.3V       | 100mA            | 100mA         |
+    | L298N H-Bridge              | 3        | 5V         | 70mA             | 210mA         |
+    | GA12-N20 Motors             | 6        | 5V         | 40mA             | 240mA         |
+    | TXJ-055-US Piezo Transducer | 1        | N/A        | N/A              | N/A           |
+    | LM386N-1 Amplifier          | 1        | 9V         | 8mA              | 8mA           |
+    | LED Indicator               | 2        | 3.3V       | 10mA             | 20mA          |
+    | AZ1117CD Voltage Regulator  | 2        | 9V-5V/3.3V | 10mA             | 20mA          |
+    - Total Current Draw: 598mA
+    - Average 9V Battery: 500mAh
+    - Battery Life = $\frac{BatteryCapacity(mAh)}{TotalCurrentDraw(mA)} = \frac{500mAh}{598mA} \approx 0.83 hours$
+      - Assuming it takes 1 minute to finish tuning, our system can be used up to 50 times from one 9V battery
+  - Updated Block Diagram with full labeling: ![ECE 445 Block Diagram V2](https://github.com/user-attachments/assets/7cecf9ec-2bf3-41f9-a881-44dee75acd75)
+
+### (2/19/2025)
+- Completed Professor Proposal Review
+  - Verify that readings from the Piezo Disc Transducer are accurate
+  - Need to think more about the torque of the motors and how to properly limit it as to not break the guitar
+
 ## Week 6
 
+### (2/25/2025)
+- Vibration-Sensing Subsystem Experimentation and Testing
+  - Tested Piezo Disc Transducer output using Scopy to verify accurate frequency readings
+  - Determined that the transducer needs to be placed on the bridge of the guitar as the vibrations are the strongest there
+  - Have to rethink the design for how to attach the transducer to the guitar as it can't really just cllp on to the bridge
+  - Strumming all 6 strings at once does produce distinct frequency peaks but we need to differentiate between the root notes and harmonics when tuning
+- Motor Subsystem Experimentation and Testing
+  - Tested the motors to see if they can properly turn the tuning pegs
+  - Ethan 3D printed motor-peg attachments to be able to fit around the tuning pegs
+  - The current motors we have are too weak to turn the pegs
+  - Need to look into stronger motors and may have to adjust subsystem voltage requirements
+
+### (2/27/2025)
+- Had 2nd TA Meeting
+  - Can order parts through my.ece --> Purchasing Tab
+  - Additional Feedback from Professor
+    - Need to consider what sampling frequency we will use when reading from the Piezo Disc Transducer
+    - What motor RPM would be optimal?
+    - Block Diagram is too small/too busy
+  - Obtained Kit 91 from Locker J1 (18-36-48)
+ 
+### (2/28/2025)
+- Decided to change which voltage regulators based on ECE supplies
+  - Updated Parts List:
+    - Replaced 3.3V Voltage Regulator (AZ1117CD-3.3TRG1 --> LM2937-3.3)
+    - Replaced 5V Voltage Regulator (LM317T --> LM2937)
+    - *The updated Battery Analysis remains essentially the same
+      
 ## Week 7
 
+### (3/4/2025)
+- Began drafting Design Document
+  - Created Subsystem Requirements and Verifications Table
+  - Analyzed the Cost Breakdown of the entire project:
+  
+    | Part Description       | Part Number          | Vendor   | Quantity | Total Cost |
+    | ---------------------- | -------------------- | -------- | -------- | ---------- |
+    | 3.3V Voltage Regulator | LM2937-3.3           | DigiKey  | 1        | $1.81      |
+    | 5V Voltage Regulator   | μA7805               | DigiKey  | 1        | $1.16      |
+    | H-Bridge               | L298N                | E-Shop   | 3        | -          |
+    | Motors                 | GA12-N20             | Amazon   | 6        | $44.94     |
+    | Microcontroller        | STM32H7B0RBT6        | DigiKey  | 1        | $9.31      |
+    | Piezo Disc Transducer  | TXJ-055-US           | Amazon   | 15       | $6.99      |
+    | Signal Amplifier       | LM386N-1             | Mouser   | 1        | $0.93      |
+    | LEDs                   | RED/GREEN LED        | E-Shop   | 2        | -          |
+    | Guitar                 | First Act Guitar 222 | Facebook | 1        | $55        |
+    | 9V Battery             | Energizer MAX        | Amazon   | 4        | $11.88     |
+    | Battery Holder         | 9V-Switch            | Amazon   | 2        | $5.99      |
+    
+  - Ethan added an analysis of the 3.3V and 5V Voltage Regulators
+  - Updated Block Diagram:
+
+    ![ECE 445 Block Diagram V3](https://github.com/user-attachments/assets/16eff804-28c0-459e-9232-37d7f62de796)
+
+### (3/5/2025)
+- Picked up actual guitar we will be using for the project
+  - Verified that the Piezo Disc Transducers still obtain accurate readings with this guitar
+  - Need to adjust physical designs to accomodate the smaller guitar size
+- Completed Teamwork Evaluation I
+- Began looking into how to program STM32 Microcontroller ([STM32H7 User Guide](https://github.com/user-attachments/files/19483219/STM32H7.User.Guide.pdf))
+
+### (3/6/2025)
+- Had 3rd TA Meeting
+  - We should upload our PCB files to PCBWay for approval --> Then send the approval screenshot to the TA so he can also verify everything
+- Finalized Design Document
+  - Decided to use a magnetic mounting system to attach the Piezo Disc Transducer to the bridge of the guitar
+  - Added a weekly schedule going forward:
+    | Week      | Tasks                                                                                                                                      | Responsibility                           |
+    | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+    | 3/3/2025  | 1. Finish Design Document <br /> 2. Sign up for Breadboard Demo <br /> 3. Order all parts for Breadboard Demo                              | 1. Both <br /> 2. Both <br /> 3. Ethan   |
+    | 3/10/2025 | 1. Complete Breadboard Design for Demo <br /> 2. Complete PCB Design for PCBWay <br /> 3. Create rough physical design and mounting system | 1. Both <br /> 2. Both <br /> 3. Ethan   |
+    | 3/17/2025 | 1. Spring Break                                                                                                                            | 1. Both                                  |
+    | 3/24/2025 | 1. Solder PCB <br /> 2. Tuning Algorithm Development <br /> 3. Prototype Motor Subsystem                                                   | 1. Both <br /> 2. Nathan <br /> 3. Ethan |
+    | 3/31/2025 | 1. Individual Progress Report <br /> 2. Prototype Vibration-Sensing Subsystem <br /> 3. Prototype Processing Subsystem                     | 1. Both <br /> 2. Both <br /> 3. Both    | 
+    | 4/7/2025  | 1. Fine Tune PCB Design <br /> 2. Unit Test All Subsystems <br /> 3. Test Subsystem Integration                                            | 1. Ethan <br /> 2. Both <br /> 3. Nathan |
+    | 4/14/2025 | 1. Ensure High Level Requirements are Met                                                                                                  | 1. Both                                  |
+    | 4/21/2025 | 1. Present Mock Demo <br /> 2. Implement Feedback from Mock Demo                                                                           | 1. Both <br /> 2. Both                   |
+    | 4/28/2025 | 1. Present Final Demo <br /> 2. Give Mock Presentation <br /> 3. Implement Feedbackl from Mock Presentation                                | 1. Both <br /> 2. Both <br /> 3. Both    | 
+    | 5/5/2025  | 1. Give Final Presentation <br /> 2. Complete Final Paper <br /> 3. Lab Checkout                                                           | 1. Both <br /> 2. Both <br /> 3. Both    | 
+
+### (3/8/2025)
+- Added key STM32 initialization functions
+  - GPIO_Init --> For Motor Control and Control Buttons
+  - PWM_Init --> For Motor Speed Control
+  - ADC_Init --> For Piezo Disc Transducer Frequency Detection
+  - UART_Init --> For general debugging features
+  - *Currently unable to actually test any of these as our microcontroller still has not come in
+
 ## Week 8
+
+### (3/10/2025)
+- Began to develop basic tuning algorithm (written initially in Python for easier testing and debugging)
+  - Obtained frequency output graphs from the Piezo Disc Transducer via Scopy
+  - Given an in-tune guitar, we are able to categorize the frequency of each string when all 6 strings are strummed by filtering out the harmonics within a set tolerance value <br />
+    <img width="463" alt="ECE 445 Python Script Output" src="https://github.com/user-attachments/assets/78c536eb-6195-4d7f-be35-e06daa009999" />
+  - Still need further testing for out-of-tune guitars, especially if neighbor strings interfere with each other when they are severly out-of-tune
+  - Full Script Available Here: [ECE 445 Frequency Analysis Script](https://colab.research.google.com/drive/1fa643Y6XStVupCan_778ElVVapWFxAj5?usp=sharing)
+
+### (3/11/2025)
+- Could not finish Breadboard Demo as our microcontroller arrived too late to attempt to program
 
 ## Helpful Links
 
