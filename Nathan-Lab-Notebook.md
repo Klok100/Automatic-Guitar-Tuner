@@ -237,6 +237,11 @@
   - Signal Amplifier: [LM386N-1](https://www.ti.com/lit/ds/symlink/lm386.pdf)
 
 ### Microcontroller Guides 
+- [STM32H7B0xB Datasheet](https://github.com/user-attachments/files/19664395/STM32H7B0RB.Datasheet.pdf)
+- [STM32 Arduino IDE Setup](https://community.st.com/t5/stm32-mcus/how-to-program-and-debug-the-stm32-using-the-arduino-ide/ta-p/608514)
+- [JTAG Pinout](https://developer.arm.com/documentation/dui0499/d/ARM-DSTREAM-Target-Interface-Connections/ARM-JTAG-20)
+- [STM32 Boot Mode](https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf)
+- [STLINK-V3-MINIE User Guide](https://www.st.com/resource/en/user_manual/dm00813040.pdf)
 
 ### Similar Projects
 
