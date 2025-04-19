@@ -132,7 +132,7 @@ The rounds of PCB order are not mandatory
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
 
-###TA meeting 2 3/6
+### TA meeting 2 3/6
 getting the PCB - make account on PCBway and upload the gerber - wait for PCBWAY to approve it and send screenshot of approval to our TA. Also send TA the schematic with the gerber if we're ahead of time and he can double check it.
 
 professor meeting - breadboard demo doesn't have to be complete functonality but at least one subsystem has to be ready
@@ -144,7 +144,7 @@ proposals have been graded, design doc no specific guidance
 for throughholes without footprints we can use a soldering pad and drill a hole through it, PCBway can drill the holes for us
 
 
-### parts files
+### parts files and order 4/10
 Parts needed
 Resistors
 2 x 2.2 k (eshop)
@@ -168,3 +168,17 @@ Connectors
 10 x Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/molex/0022232021/26667))
 1 x 2x3 connector for Boot0 ([dKey](https://www.digikey.com/en/products/detail/molex/0901301206/760959))
 1 x Conn_ARM_JTAG_SWD_10 Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/on-shore-technology-inc/302-S101/2178422))
+
+### 3D Modeling Notes 4/17
+
+Guitar model is fairly accurate to our guitar, except a barebones version and a non-angled headstock  
+The dowel rod is used to hold the sensor in place and to connect the motors
+The magnet mount allows for an easily removable sensor mount
+The motor part is the high torque one that is able to move the tuning pegs
+The motor-dowel part is the connectors between the dowel rod and the motors
+The motor-tuningpeg is the current part that transmits the motor force to the tuning pegs
+-- motor-tuning-mini is a smaller version that will print faster
+-- N20shaft_sizing was used to find the shaft size of the original small motor
+The tuningpeg part is the model of only the tuning peg of the guitar
+PCB 1 is 4.5" x 4.65"
+PCB 2 is 4" x 4.2" 
