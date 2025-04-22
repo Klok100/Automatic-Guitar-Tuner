@@ -242,6 +242,10 @@
 - [JTAG Pinout](https://developer.arm.com/documentation/dui0499/d/ARM-DSTREAM-Target-Interface-Connections/ARM-JTAG-20)
 - [STM32 Boot Mode](https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf)
 - [STLINK-V3-MINIE User Guide](https://www.st.com/resource/en/user_manual/dm00813040.pdf)
+- [STM32 Hello World Tutorial Guide](https://youtu.be/8S78Ih4SaiE?si=6Xj7R8O0bKv14Vj-)
+- [STM32 UART Guide](https://youtu.be/ttzu-j77jPg?si=z0fbmpthiJIxOkbx)
+- [STM32 ADC Single-Input Mode Guide](https://youtu.be/q2R8jqOQuj8?si=JdF-AFtofjSvF06V)
+- [STM32 ADC Differential Mode Guide](https://youtu.be/E47Alkv0Uko?si=PrPSLkQyITmeg1vr)
 
 ### Similar Projects
 
