@@ -7,7 +7,7 @@
 ## 1/22 
 - Prof Oelze Comment 
 	> There are many automatic guitar tuners on the market already. How would you differentiate from them? Do you have some innovation to the existing solutions?
-- Initial Research into Market
+- Partnered with Nathan to find Initial Research into Market
 	- [Tronical](https://www.tronicaltune.net/tronicaltune-plus/) - Custom frets and tuning attached to headstock, display for each string
 	- Robot Guitar
 	- Axcent - button/foot switch triggered, can switch tunings on the fly, bridge
@@ -45,8 +45,9 @@
 	- Portability / ease of attaching and removing
 	- Weight
 	- Battery life
+- Discussed with Nathan and Split roles into Hardware (me) and Software (Nathan)
 ## 2/6 
-- Project Approved!
+- [Project Approved!](https://docs.google.com/document/d/1nwYWKY9DeY5X0FPsXHrTtyqf1Pt8vyyrZwkM8g2xa2k/edit?usp=sharing)
 # Week 4, 2/10
 ## 2/10
 - Soldering Assignment Submitted
@@ -60,6 +61,8 @@ label all signals in the block diagram (DC/AC/Wifi, etc)
 separate the subsystem requirements
 - ensure that the requirements are for the whole subsystem, not a component
 - quantative requirements
+- Nathan Created a Block Diagram and started work on the Tuning Algorithm
+![initbl](https://github.com/user-attachments/assets/e3138cf9-7a8d-469c-9454-604c1eef953b)
 
 ## Custom PCB stuff
 
@@ -77,6 +80,9 @@ Created CAD mockup of project
 - ![inticadhead](https://github.com/user-attachments/assets/68bed91c-eee8-4dcc-88a9-0aa5b2bb8647)
 - Sensor mounted at neck of guitar
 - ![initcadsens](https://github.com/user-attachments/assets/f1df78ad-22c6-4460-babe-5ab94501eb90)
+- Performed a battery analysis to determine battery life, found a 50 minute lifetime
+![bms](https://github.com/user-attachments/assets/06f885b4-ba77-4ccf-8793-92cdb1e346c7)
+$Battery Life=\frac{Battery Capacity (mAh)}{Total Current Draw (mA)}=\frac{500mAh}{600mA}=\text{0.83 hours or 50 minutes}$
 # Week 5, 2/17
 ## Peer Design Review Notes (2/17)
 
@@ -123,8 +129,12 @@ Kit 91 18-36-48, Locker J1
 ## 3/4
 Started mocking up part that connects motors to tuning peg
 - ![mini](https://github.com/user-attachments/assets/3921e01f-b5db-4d86-a799-34e9f767ea4b)
+Nathan started taking the sensor data that I measured and testing the tuning algorithm on it
 ## TA meeting 3/6
-getting the PCB - make account on PCBway and upload the gerber - wait for PCBWAY to approve it and send screenshot of approval to our TA. Also send TA the schematic with the gerber if we're ahead of time and he can double check it.
+getting the PCB 
+- make account on PCBway and upload the gerber
+- wait for PCBWAY to approve it and send screenshot of approval to our TA
+- Also send TA the schematic with the gerber if we're ahead of time and he can double check it.
 
 professor meeting - breadboard demo doesn't have to be complete functonality but at least one subsystem has to be ready
 
@@ -133,6 +143,7 @@ breadboard demo rubric has been uploaded! follow that and pander
 proposals have been graded, design doc no specific guidance
 
 for throughholes without footprints we can use a soldering pad and drill a hole through it, PCBway can drill the holes for us
+
 # Week 8, 3/10
 ## 3/11
 Created 3D parts for the connectors between the dowels
@@ -148,6 +159,9 @@ Started PCB Layout and Design
 - ![pbc2](https://github.com/user-attachments/assets/7e9ad16c-24c8-486a-a1c3-de5e51cf142b)
 - Finished 3D modeled Parts
 - ![Screenshot 2025-05-08 133139](https://github.com/user-attachments/assets/6816b94b-b889-46d8-9e39-367a3a55944b)
+## 4/1 
+- [Individual Progress Report Due](https://docs.google.com/document/d/1xCeTGyqa3WRrXZtf5XI8WRg5vLMVNV7AbIkBLHfD1d0/edit?usp=sharing)
+- Nathan continues to work on the tuning algorithm, connecting it to the Dev board and testing the FFT
 # Week 12, 4/7
 ## 4/9 
 Started Assembly of parts
@@ -227,8 +241,11 @@ PCB 2 is 4" x 4.2"
 # Week 14, 4/21
 - Finished physical assembly
 - ![phys](https://github.com/user-attachments/assets/8d750beb-f023-4528-a9ed-323dc0a35de0)
+- Performed RVs for the remaining subsystems
+- Nathan has a roadblock in FFT accuracy
 # Week 15, 4/28
 - Created [Mock Presentation Slides](https://docs.google.com/presentation/d/1YZ9aDIgzMchjUdUq0ANk6EUFnHSx6i4nLlUX_31I9No/edit?usp=sharing)
+- Nathan Solves FFT roadblock, processing subystem is fully functional on the dev board 
 # Week 16, 5/5
 - Created [Final Presentation Slides](https://docs.google.com/presentation/d/1uwvnbpcpJETUpdRG_x2eOsW6RKY6nreKlF5R9wPtcf8/edit?usp=sharing)
 - Submitted Final Paper
