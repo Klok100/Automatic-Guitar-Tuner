@@ -81,8 +81,6 @@ find which H bridge to use
 - Visual Overview (made by me)
 	- im
 	- Seperated the project into Power, Motor, Processing, Vibration-Sensing Subsystems
-- Init block diagram (made by nathan)
-	- im
 Created CAD mockup of project
 - Headstock mounted power, motor, and processing units
 - ![inticadhead](https://github.com/user-attachments/assets/68bed91c-eee8-4dcc-88a9-0aa5b2bb8647)
@@ -171,7 +169,7 @@ Created initial 3D part for the magnet mount
 - mag mount tall im
 ## 3/12 
 Started PCB Layout and Design, followed recs from data sheets for decoupling caps and these videos for setup
-- Phil Lab Mixed Signales (https://www.youtube.com/watch?v=AxEL3eESL9I)
+- Phil Lab Mixed Signals (https://www.youtube.com/watch?v=AxEL3eESL9I)
 - Phil Lab Mixed Signals (https://www.youtube.com/watch?v=v6fTa6LRJLI)
 - Phil Lab KiCAD (https://www.youtube.com/watch?v=14_jh3nLSsU)
 # Week 9, 3/17 - Spring Break	
@@ -203,7 +201,9 @@ $V_{out}=V_{in}*\frac{R1}{R1+R2}=5V(\frac{20 kOhms}{10 kOhms + 20 kOhms})=3.33 V
 ## 4/9 
 Started Assembly of parts
 - ![assemb](https://github.com/user-attachments/assets/9b323bd0-8b1c-45e1-a7b1-0a6c9c9818b0)
+
 Verification of Amplifer before we realized it was unnecessary
+
 ![amp](https://github.com/user-attachments/assets/522377db-02c1-43a1-b5b2-974be1bb71fd)
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
