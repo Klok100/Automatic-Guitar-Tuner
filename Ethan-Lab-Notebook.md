@@ -157,6 +157,7 @@ Started PCB Layout and Design
 # Week 11, 3/31
 - PCB submitted for wave 4
 - ![pbc2](https://github.com/user-attachments/assets/7e9ad16c-24c8-486a-a1c3-de5e51cf142b)
+	- Major changes include: reducing size and making parts more compact, moving capacitors and traces to allow for better versatility 
 - Finished 3D modeled Parts
 - ![Screenshot 2025-05-08 133139](https://github.com/user-attachments/assets/6816b94b-b889-46d8-9e39-367a3a55944b)
 ## 4/1 
@@ -214,6 +215,8 @@ Connectors
 
 1 x Conn_ARM_JTAG_SWD_10 Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/on-shore-technology-inc/302-S101/2178422))
 # Week 13, 4/14
+## 4/16
+Removed signal amplifier as the processing subsystem was more accurate without it (added noise)
 ### 3D Modeling Notes 4/17
 
 Guitar model is fairly accurate to our guitar, except a barebones version and a non-angled headstock  
