@@ -79,7 +79,7 @@ find which H bridge to use
 
 ## 2/13 [Project Proposal!](https://docs.google.com/document/d/1nwYWKY9DeY5X0FPsXHrTtyqf1Pt8vyyrZwkM8g2xa2k/edit?usp=sharing)
 - Visual Overview (made by me)
-	- im
+	- ![visov](https://github.com/user-attachments/assets/5412fd99-4717-40c9-9c53-1bb083ca9661)
 	- Seperated the project into Power, Motor, Processing, Vibration-Sensing Subsystems
 Created CAD mockup of project
 - Headstock mounted power, motor, and processing units
@@ -166,7 +166,7 @@ for throughholes without footprints we can use a soldering pad and drill a hole 
 # Week 8, 3/10
 ## 3/11
 Created initial 3D part for the magnet mount
-- mag mount tall im
+- ![magmounttall](https://github.com/user-attachments/assets/ed30cf15-c8b7-4d2b-baf0-d2faf84969ac)
 ## 3/12 
 Started PCB Layout and Design, followed recs from data sheets for decoupling caps and these videos for setup
 - Phil Lab Mixed Signals (https://www.youtube.com/watch?v=AxEL3eESL9I)
