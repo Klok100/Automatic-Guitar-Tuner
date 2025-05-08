@@ -318,13 +318,51 @@
 
 ## Week 13
 
+### (4/15/2025)
+- STM32 Nucleo-144 Dev board arrived
+- Able to successfully locate and program the board
+- Went through many video tutorials to set up the board and acheive basic program functionality
+  - [STM32 Hello World Tutorial Guide](https://youtu.be/8S78Ih4SaiE?si=6Xj7R8O0bKv14Vj-)
+  - [STM32 UART Guide](https://youtu.be/ttzu-j77jPg?si=z0fbmpthiJIxOkbx)
+  - [STM32 ADC Single-Input Mode Guide](https://youtu.be/q2R8jqOQuj8?si=JdF-AFtofjSvF06V)
+  - [STM32 ADC Differential Mode Guide](https://youtu.be/E47Alkv0Uko?si=PrPSLkQyITmeg1vr)
+  - ^the piezoelectric sensor outputs a differential voltage signal
+- Able to read in the voltage signals from the piezoelectric sensor in real-time
+  - The voltage levels are currently quite small in the millivolt range so may have to amplify it in order to obtain a clear frequency spectrum 
+
+### (4/16/2025)
+- Learned how to control the sampling frequency of the ADC instead of polling as fast as possible
+  - Now able to properly sample at 1024 Hz to eventually take the FFT
+  - [STM32 ADC Sampling Frequency Guide](https://youtu.be/OePcprDTicU?si=xn8gZiH0Sa4o6Fy_)
+- We can feed the output from the piezoelectric sensor into a constantly updated buffer of size 1024 to match the 1024 samples of the FFT
+
 ### (4/17/2025)
 - Had 7th TA Meeting
+  - Discussed progress made using the Dev board
+    - Able to read in values from the piezoelectric sensor at a set sampling rate of 1024 Hz and store it in a buffer of size 1024 for the FFT
+  - Prepare for the Mock Demo next TA meeting - the professor will also be there
 
 ### (4/18/2025)
-- Team Contract Assessment Due
+- Completed Team Contract Assessment
+- Began researching different FFT methods for the STM32 microcontroller
+  - Can use the CMSIS library for built in FFT methods (https://github.com/ARM-software/CMSIS_4/tree/master)
+    - Most online guides still use CMSIS_4 so I'll dive deeper into that even though CMSIS_5 is available
+  - Two possible functions for taking the FFT
+    - arm_cfft_q15() + arm_cmplx_mag_q15()
+      - Takes in the voltage signal buffer and outputs a complex buffer array which is then converted into its magnitude for the FFT
+    - arm_rfft_fast_f32()
+      - Takes in the voltage signal buffer and outputs a real and complex combined buffer that's twice the length of the input buffer
+        - Ex. outputBuffer[0] is the real part and outputBuffer[1] is the complex part of the output
+      - The magnitude is the manually taken via $mag[i] = \sqrt(outputBuffer[i]^2 + outputBuffer[i + 1]^2)$
 
 ## Week 14
+
+### (4/22/2025)
+- Can use STM32CubeMonitor to graphicallly visualize the input (Voltage vs Time) and output (Frequency Spectrum) buffers
+- arm_cfft_q15() + arm_cmplx_mag_q15() method outputs some type of frequency spectrum but it does not appear to be correct
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/c414456f-2eaf-4ed5-875c-1bdbb70d43f9" alt = "Sample Image" width = "400" height = "300">
+  </p>
 
 ### (4/24/2025)
 - Mock Demo
@@ -372,6 +410,10 @@
 - [STM32 UART Guide](https://youtu.be/ttzu-j77jPg?si=z0fbmpthiJIxOkbx)
 - [STM32 ADC Single-Input Mode Guide](https://youtu.be/q2R8jqOQuj8?si=JdF-AFtofjSvF06V)
 - [STM32 ADC Differential Mode Guide](https://youtu.be/E47Alkv0Uko?si=PrPSLkQyITmeg1vr)
+- [STM32 ADC Sampling Frequency Guide](https://youtu.be/OePcprDTicU?si=xn8gZiH0Sa4o6Fy_)
+- [STM32 ADC DMA & Double Buffering Guide](https://youtu.be/zlGSxZGwj-E?si=3pYIkpMInkBLTX57)
+- [STM32 FFT Guide](https://youtu.be/d1KvgOwWvkM?si=Z_g0ZRvIfNrDz3Zj)
+- [STM32 DC Motor Control Guide](https://youtu.be/TvacIiEwWFw?si=H48CacmLXv1JakhO)
 
 ### Similar Projects
 
