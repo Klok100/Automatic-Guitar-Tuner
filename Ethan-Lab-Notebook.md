@@ -74,9 +74,9 @@ find which H bridge to use
 ## 2/13 Design review
 Created CAD mockup of project
 - Headstock mounted power, motor, and processing units
-- image
+- ![inticadhead](https://github.com/user-attachments/assets/68bed91c-eee8-4dcc-88a9-0aa5b2bb8647)
 - Sensor mounted at neck of guitar
-- image
+- ![initcadsens](https://github.com/user-attachments/assets/f1df78ad-22c6-4460-babe-5ab94501eb90)
 # Week 5, 2/17
 ## Peer Design Review Notes (2/17)
 
@@ -122,6 +122,7 @@ Kit 91 18-36-48, Locker J1
 # Week 7, 3/3
 ## 3/4
 Started mocking up part that connects motors to tuning peg
+- ![mini](https://github.com/user-attachments/assets/3921e01f-b5db-4d86-a799-34e9f767ea4b)
 ## TA meeting 3/6
 getting the PCB - make account on PCBway and upload the gerber - wait for PCBWAY to approve it and send screenshot of approval to our TA. Also send TA the schematic with the gerber if we're ahead of time and he can double check it.
 
@@ -134,21 +135,23 @@ proposals have been graded, design doc no specific guidance
 for throughholes without footprints we can use a soldering pad and drill a hole through it, PCBway can drill the holes for us
 # Week 8, 3/10
 ## 3/11
-Created 3D parts:
+Created 3D parts for the connectors between the dowels
 ## 3/12 
 Started PCB Layout and Design
 # Week 9, 3/17 - Spring Break	
 # Week 10, 3/24
 ## 3/25 
 - PCB submitted for wave 3
-- Image wave 3
+- ![pcb1](https://github.com/user-attachments/assets/fa688f77-66eb-4933-b57a-0efec8930ff1)
 # Week 11, 3/31
 - PCB submitted for wave 4
-- Image wave 4
+- ![pbc2](https://github.com/user-attachments/assets/7e9ad16c-24c8-486a-a1c3-de5e51cf142b)
+- Finished 3D modeled Parts
+- ![Screenshot 2025-05-08 133139](https://github.com/user-attachments/assets/6816b94b-b889-46d8-9e39-367a3a55944b)
 # Week 12, 4/7
 ## 4/9 
 Started Assembly of parts
-- Image assembly
+- ![assemb](https://github.com/user-attachments/assets/9b323bd0-8b1c-45e1-a7b1-0a6c9c9818b0)
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
 
@@ -223,10 +226,11 @@ PCB 2 is 4" x 4.2"
 
 # Week 14, 4/21
 - Finished physical assembly
+- ![phys](https://github.com/user-attachments/assets/8d750beb-f023-4528-a9ed-323dc0a35de0)
 # Week 15, 4/28
-- Created Mock Presentation Slides
+- Created [Mock Presentation Slides](https://docs.google.com/presentation/d/1YZ9aDIgzMchjUdUq0ANk6EUFnHSx6i4nLlUX_31I9No/edit?usp=sharing)
 # Week 16, 5/5
-- Created Final Presentation Slides
+- Created [Final Presentation Slides](https://docs.google.com/presentation/d/1uwvnbpcpJETUpdRG_x2eOsW6RKY6nreKlF5R9wPtcf8/edit?usp=sharing)
 - Submitted Final Paper
 
 
