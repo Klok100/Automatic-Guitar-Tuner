@@ -148,25 +148,45 @@ for throughholes without footprints we can use a soldering pad and drill a hole 
 Parts needed
 Resistors
 2 x 2.2 k (eshop)
+
 5 x 10 k (eshop)
+
 1 x 20 k ([dKey](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERA-6AEB203V/1465780))
+
 3 x 100 k (eshop)
+
 1 x 1 M (eshop)
+
 Caps
+
 1 x 10 nF ([dKey](https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B103KBANNNC/3886673))
+
 1 x 15 nF ([dKey](https://www.digikey.com/en/products/detail/kemet/C0805C153K5RACTU/411160))
+
 10 x 100 nF (eshop)
+
 1 x 0.33 uF ([dKey](https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B334KBFNNNE/3886781))
+
 3 x 0.1 uF (eshop)
+
 2 x 1 uF (eshop)
+
 1 x 10 uF (eshop)
+
 Diodes
+
 1 x 5V Zener Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal (1N4733A, C7 D2 self)
+
 1 x MBR0520 Diode_SMD:D_SOD-123 ([dKey](https://www.digikey.com/en/products/detail/onsemi/MBR0520LT1G/918574))
+
 24 x 1N5817 Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal (C7 D4 self)
+
 Connectors
+
 10 x Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/molex/0022232021/26667))
+
 1 x 2x3 connector for Boot0 ([dKey](https://www.digikey.com/en/products/detail/molex/0901301206/760959))
+
 1 x Conn_ARM_JTAG_SWD_10 Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/on-shore-technology-inc/302-S101/2178422))
 
 ### 3D Modeling Notes 4/17
