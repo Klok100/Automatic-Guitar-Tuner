@@ -27,7 +27,7 @@
 	- Polyphonic?
 ## 1/31
 - CAD assigment due
-	- Gained familiarity with PCB layout, placements, tracing 
+	- Gained familiarity with PCB layout, placements, traces
 # Week 3, 2/3
 ## 2/5
 - Prof Oelze Comment
@@ -47,7 +47,10 @@
 	- Battery life
 - Discussed with Nathan and Split roles into Hardware (me) and Software (Nathan)
 ## 2/6 
-- [Project Approved!](https://docs.google.com/document/d/1nwYWKY9DeY5X0FPsXHrTtyqf1Pt8vyyrZwkM8g2xa2k/edit?usp=sharing)
+- Project Approved! 
+- Response to Prof Oelze
+	- Our transducer is extremely small compared to the mass of the guitar, so there is negligible change in the sound when it is attached vs taken off
+	- Harmonics can be addressed through a simple harmonic reduction algorithm since harmonics are integer multiples of the fundamental frequency
 # Week 4, 2/10
 ## 2/10
 - Soldering Assignment Submitted
@@ -74,7 +77,12 @@ Don’t forget microcontroller programmer
 
 find which H bridge to use
 
-## 2/13 Design review
+## 2/13 [Project Proposal!](https://docs.google.com/document/d/1nwYWKY9DeY5X0FPsXHrTtyqf1Pt8vyyrZwkM8g2xa2k/edit?usp=sharing)
+- Visual Overview (made by me)
+	- im
+	- Seperated the project into Power, Motor, Processing, Vibration-Sensing Subsystems
+- Init block diagram (made by nathan)
+	- im
 Created CAD mockup of project
 - Headstock mounted power, motor, and processing units
 - ![inticadhead](https://github.com/user-attachments/assets/68bed91c-eee8-4dcc-88a9-0aa5b2bb8647)
@@ -124,11 +132,20 @@ The rounds of PCB order are not mandatory
 - Get whatever one we can order
 
 Kit 91 18-36-48, Locker J1
-
+# 2/28
+Explored motor options
+	- [Antrader 30 RPM DC 6V](https://www.amazon.com/Antrader-Electric-GA12-N20-Deceleration-Reduction/dp/B07FYBQ7Z4)
+	- [Greartisan DC 12V 250RPM](https://www.amazon.com/Reversible-Reduction-Electric-15-200RPM-Diameter/dp/B07D28H965/)
+	- [DC 12V Reversible High Reduction](https://www.amazon.com/Greartisan-Self-Locking-Reversible-Reductioon-Electric/dp/B07YBXF7XW/)
+	- [L298N Motor Drive Controller Board](https://www.amazon.com/Qunqi-Controller-Module-Stepper-Arduino/dp/B014KMHSW6/)
+	- [Greartisan DC 12V 120RPM Turbo Worm](https://www.amazon.com/Greartisan-120RPM-Turbine-Reduction-JSX69-370/dp/B071XG53B4/)
 # Week 7, 3/3
 ## 3/4
 Started mocking up part that connects motors to tuning peg
 - ![mini](https://github.com/user-attachments/assets/3921e01f-b5db-4d86-a799-34e9f767ea4b)
+- This part was a testing part to fit the N20 shaft of the motors
+- Through developing this part I found that the N20 motor did not have enough torque, so I looked further into the motor optiones listed above
+
 Nathan started taking the sensor data that I measured and testing the tuning algorithm on it
 ## 3/5 
 Performed linear regulator analysis, found we needed larger linear regulators as the current ones would overheat
@@ -150,14 +167,20 @@ for throughholes without footprints we can use a soldering pad and drill a hole 
 
 # Week 8, 3/10
 ## 3/11
-Created 3D parts for the connectors between the dowels
+Created initial 3D part for the magnet mount
+- mag mount tall im
 ## 3/12 
-Started PCB Layout and Design
+Started PCB Layout and Design, followed recs from data sheets for decoupling caps and these videos for setup
+- Phil Lab Mixed Signales (https://www.youtube.com/watch?v=AxEL3eESL9I)
+- Phil Lab Mixed Signals (https://www.youtube.com/watch?v=v6fTa6LRJLI)
+- Phil Lab KiCAD (https://www.youtube.com/watch?v=14_jh3nLSsU)
 # Week 9, 3/17 - Spring Break	
 # Week 10, 3/24
 ## 3/25 
 - PCB submitted for wave 3
 - ![pcb1](https://github.com/user-attachments/assets/fa688f77-66eb-4933-b57a-0efec8930ff1)
+## 3/27
+- Made magnet mount shorter to allow for a better angle for the sensor
 # Week 11, 3/31
 - PCB submitted for wave 4
 - ![pbc2](https://github.com/user-attachments/assets/7e9ad16c-24c8-486a-a1c3-de5e51cf142b)
@@ -166,6 +189,15 @@ Started PCB Layout and Design
 - ![Screenshot 2025-05-08 133139](https://github.com/user-attachments/assets/6816b94b-b889-46d8-9e39-367a3a55944b)
 ## 4/1 
 - [Individual Progress Report Due](https://docs.google.com/document/d/1xCeTGyqa3WRrXZtf5XI8WRg5vLMVNV7AbIkBLHfD1d0/edit?usp=sharing)
+- Low Pass Filter for piezo sensor 
+
+$F_C=\frac{1}{2\pi RC}=\frac{1}{2\pi * (10000 Ohms)*(16 nF)}=994.72 Hz$
+
+- Voltage Divider for Piezo sensor to prevent saturation of MCU pin
+
+$V_{out}=V_{in}*\frac{R1}{R1+R2}=5V(\frac{20 kOhms}{10 kOhms + 20 kOhms})=3.33 V$
+
+- Performed verification on the power subsystem, Motor Subsystem, and Vibration Subysystem
 - Nathan continues to work on the tuning algorithm, connecting it to the Dev board and testing the FFT
 # Week 12, 4/7
 ## 4/9 
@@ -176,7 +208,7 @@ Verification of Amplifer before we realized it was unnecessary
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
 
-### parts files and order 4/10
+### parts files and order 4/10 for PCB round 4
 Parts needed
 Resistors
 2 x 2.2 k (eshop)
@@ -221,11 +253,7 @@ Connectors
 
 1 x Conn_ARM_JTAG_SWD_10 Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/on-shore-technology-inc/302-S101/2178422))
 
-## 4/12
-- Low Pass Filter for piezo sensor 
-$F_C=\frac{1}{2\pi RC}=\frac{1}{2\pi * (10000 Ohms)*(16 nF)}=994.72 Hz$
-- Voltage Divider for Piezo sensor to prevent saturation of MCU pin
-$V_{out}=V_{in}*\frac{R1}{R1+R2}=5V(\frac{20 kOhms}{10 kOhms + 20 kOhms})=3.33 V$
+
 # Week 13, 4/14
 ## 4/16
 Removed signal amplifier as the processing subsystem was more accurate without it (added noise)
@@ -257,7 +285,8 @@ PCB 2 is 4" x 4.2"
 - Finished physical assembly
 - ![phys](https://github.com/user-attachments/assets/8d750beb-f023-4528-a9ed-323dc0a35de0)
 - Performed RVs for the remaining subsystems
-- Nathan has a roadblock in FFT accuracy
+- Nathan has a roadblock in FFT 
+- Performed verifications on all subsystems as possible
 # Week 15, 4/28
 - Created [Mock Presentation Slides](https://docs.google.com/presentation/d/1YZ9aDIgzMchjUdUq0ANk6EUFnHSx6i4nLlUX_31I9No/edit?usp=sharing)
 - Nathan Solves FFT roadblock, processing subystem is fully functional on the dev board 
