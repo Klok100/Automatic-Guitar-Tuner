@@ -130,6 +130,10 @@ Kit 91 18-36-48, Locker J1
 Started mocking up part that connects motors to tuning peg
 - ![mini](https://github.com/user-attachments/assets/3921e01f-b5db-4d86-a799-34e9f767ea4b)
 Nathan started taking the sensor data that I measured and testing the tuning algorithm on it
+## 3/5 
+Performed linear regulator analysis, found we needed larger linear regulators as the current ones would overheat
+![3 3](https://github.com/user-attachments/assets/3fbb2f2d-441b-4d36-a879-92ad642ea2cb)
+![5](https://github.com/user-attachments/assets/f7888884-107d-41c7-9a4b-41e3fbeb8882)
 ## TA meeting 3/6
 getting the PCB 
 - make account on PCBway and upload the gerber
@@ -167,6 +171,8 @@ Started PCB Layout and Design
 ## 4/9 
 Started Assembly of parts
 - ![assemb](https://github.com/user-attachments/assets/9b323bd0-8b1c-45e1-a7b1-0a6c9c9818b0)
+Verification of Amplifer before we realized it was unnecessary
+![amp](https://github.com/user-attachments/assets/522377db-02c1-43a1-b5b2-974be1bb71fd)
 ### 3D Printing info
 [tuning motor connection dimensions](https://www.amazon.co.uk/Guitar-String-Multifunctional-Restringing-Ukulele/dp/B0BW8S5B4G)
 
@@ -214,6 +220,12 @@ Connectors
 1 x 2x3 connector for Boot0 ([dKey](https://www.digikey.com/en/products/detail/molex/0901301206/760959))
 
 1 x Conn_ARM_JTAG_SWD_10 Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical ([dKey](https://www.digikey.com/en/products/detail/on-shore-technology-inc/302-S101/2178422))
+
+## 4/12
+- Low Pass Filter for piezo sensor 
+$F_C=\frac{1}{2\pi RC}=\frac{1}{2\pi * (10000 Ohms)*(16 nF)}=994.72 Hz$
+- Voltage Divider for Piezo sensor to prevent saturation of MCU pin
+$V_{out}=V_{in}*\frac{R1}{R1+R2}=5V(\frac{20 kOhms}{10 kOhms + 20 kOhms})=3.33 V$
 # Week 13, 4/14
 ## 4/16
 Removed signal amplifier as the processing subsystem was more accurate without it (added noise)
@@ -252,6 +264,9 @@ PCB 2 is 4" x 4.2"
 # Week 16, 5/5
 - Created [Final Presentation Slides](https://docs.google.com/presentation/d/1uwvnbpcpJETUpdRG_x2eOsW6RKY6nreKlF5R9wPtcf8/edit?usp=sharing)
 - Submitted Final Paper
+
+Full PCB Schematic:
+![full](https://github.com/user-attachments/assets/b05e7a1e-4b8b-48e2-a9a3-3cb5381f6d97)
 
 
 
