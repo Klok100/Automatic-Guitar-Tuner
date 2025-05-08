@@ -363,11 +363,62 @@
   <p align="center">
     <img src = "https://github.com/user-attachments/assets/c414456f-2eaf-4ed5-875c-1bdbb70d43f9" alt = "Sample Image" width = "400" height = "300">
   </p>
-
+- When directly tapping the sensor, there are some visible peaks in both the Voltage and Frequency, but the actual guitar strum just produces a bunch of seemingly random noise
+- Manually testing this method via a hardcoded sin wave seems to work though
+  
 ### (4/24/2025)
-- Mock Demo
+- Completed Mock Demo
+  - Able to read in the Voltage signals from the sensor but the FFT output using the Complex Fourier Transform doesn't seem to work
+  - Professor suggested amplifying the Voltage input to more clearly see the values
+  - TA said we should try constantly printing out the values just to see how they change over time vs the STM32 CubeMonitor output as the refresh rate may be different
+  - Also will try implementing the arm_rfft_fast_f32() method as well
+- Updated the motor control calculations along with the Tuning Algorithm flowchart
+  - Motors rotate at 0.5 RPM (3 degrees of rotation per second)
+  - A string can be out-of-tune by at most a whole step which corresponds to about 180 degrees of rotation for the tuning peg
+  - Can create a ratio to map an out-of-tune frequency difference to an amount of degrees rotated to be in tune
+  - Then, can determine how long to turn each motor via the following equation: $DurationOfRotation = \frac{DegreeOfRotation}{3} * 1000$
+
+### (4/25/2025)
+- Worked to implement the arm_rfft_fast_f32() method which seems to work as intended (below is a frequency spectrum taken with an out-of-tune guitar)
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/29bf25c0-8a93-48c1-9020-ab71df0459bc" alt = "Sample Image" width = "450" height = "200">
+  </p>
+- From here, I was able to locate all of the frequency peaks and port over the Tuning Algorithm that was initially developed in Python
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/7f9c2ae6-023c-4e42-9e2a-8701a7285f5b" alt = "Sample Image" width = "400" height = "200">
+    
+    <img src = "https://github.com/user-attachments/assets/04c97f37-84a2-4c0b-88a6-a896b61b1d11" alt = "Sample Image" width = "400" height = "200">
+  </p>
+  - The figure on the left shows the detected frequency peaks when all 6 strings are strummed at once with the G string out of tune
+  - The figure on the right shows the detected frequency peaks when all 6 strings are strummed at once with everything in tune
 
 ## Week 15
+
+### (4/28/2025)
+- Completed RVs for Vibration-Sensing Subsystem
+  - Must be able sense to vibrational frequency of the guitar and accurately output a signal within ±12 cents of the original frequency
+  - Tested using ADALM 2000's Spectrum Analyzer to accurately obtain readings from the piezoelectric sensor when all 6 strings were strummed at once
+    | Guitar String Notes | Exact Tuning Frequencies | Tuning Frequencies ±12 Cents | Obtained Tuning Frequencies | Results |
+    | ------------------- | ------------------------ | ---------------------------- | --------------------------- | ------- | 
+    | E2                  | 81.41 Hz                 | 81.84 Hz - 82.98 Hz          | 82.8125 Hz                  | Success | 
+    | A2                  | 110 Hz                   | 109.23 Hz - 110.77 Hz        | 109.375 Hz                  | Success | 
+    | D3                  | 146.83 Hz                | 145.81 Hz - 147.85 Hz        | 146.875 Hz                  | Success | 
+    | G3                  | 196 Hz                   | 194.64 Hz - 197.36 Hz        | 195.313 Hz                  | Success | 
+    | B3                  | 246.94 Hz                | 245.22 Hz - 248.66 Hz        | 246.875 Hz                  | Success | 
+    | E4                  | 329.63 Hz                | 327.34 Hz - 331.92 Hz        | 331.25 Hz                   | Success | 
+    - Note that the Frequency-Cents Formula is just a ratio between two frequencies: $Cents = 1200 * log_2(\frac{f1}{f2})$ where $f1$ and $f2$ are the two frequencies in comparison
+- Completed RVs for the Processing Subsystem
+  - The processing system must analyze frequencies with at least ±3 Hz precision in the 80 Hz – 350 Hz range
+  - Tested by using the microcontroller programmed with the developed tuning algorithm to determine the frequencies from the guitar when all 6 strings were strummed at once
+    | Guitar String Notes | Exact Tuning Frequencies | Tuning Frequencies ±3 Hz | Obtained Tuning Frequencies | Results |
+    | ------------------- | ------------------------ | ------------------------ | --------------------------- | ------- | 
+    | E2                  | 81.41 Hz                 | 79.41 Hz - 85.41 Hz      | 82 Hz                       | Success | 
+    | A2                  | 110 Hz                   | 107 Hz - 113 Hz          | 110 Hz                      | Success | 
+    | D3                  | 146.83 Hz                | 143.83 Hz - 149.83 Hz    | 147 Hz                      | Success | 
+    | G3                  | 196 Hz                   | 193 Hz - 199 Hz          | 195 Hz                      | Success | 
+    | B3                  | 246.94 Hz                | 243.94 Hz - 249.94 Hz    | 248 Hz                      | Success | 
+    | E4                  | 329.63 Hz                | 326.63 Hz - 332.63 Hz    | 329 Hz                      | Success |
+    - Note that the frequencies obtained via the microcontroller processing subsystem are not only within the ±3 Hz range but also the ±12 Cents range
 
 ### (4/29/2025)
 - Final Demo
