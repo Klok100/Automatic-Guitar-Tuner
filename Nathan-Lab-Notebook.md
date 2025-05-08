@@ -223,6 +223,99 @@
 ### (3/11/2025)
 - Could not finish Breadboard Demo as our microcontroller arrived too late to attempt to program
 
+## Week 9
+- Spring Break
+
+## Week 10
+
+## (3/25/2025)
+- Continued to fine tune the Frequency Analysis Script while the microcontroller was being soldered together for breadboard use and programmability
+- Determined specific out-of-tune boundaries for the guitar such that each string can only be a whole step out-of-tune in either direction (Sharp or Flat)
+  - This is so that there is no string tuning interference when looking specifically at the G3 and B3 string - with the whole step out-of-tune limit in place, in the worst case the G3 string will be Sharp up to an A3 and the B3 string will be Flat to an A3, both of which can be non-inclusive frequencies to prevent any overlap
+  - The full list of string tuning boundaries is shown below:
+    | Guitar String | Tuning Note Range | Tuning Frequency Range | Exact In-Tune Frequency |
+    | ------------- | ----------------- | ---------------------- | ----------------------- | 
+    | E2            | D2 - F#2          | 73.42 Hz - 92.50 Hz    | 82.41 Hz                |
+    | A2            | G2 - B2           | 98 Hz - 123.47 Hz      | 110 Hz                  | 
+    | D3            | C3 - E3           | 130.81 Hz - 164.81 Hz  | 146.83 Hz               |
+    | G3            | F3 - A3           | 174.61 Hz - 220 Hz     | 196 Hz                  | 
+    | B3            | A3 - C#4          | 220.01 Hz - 277.18 Hz  | 246.94 Hz               |
+    | E4            | D4 - F#4          | 293.66 Hz - 369.99 Hz  | 329.64 Hz               |
+
+## (3/26/2025)
+- Adjusted the Harmonic Reduction Algorithm such that the E2 string no longer removes the E4 string fundamental frequency
+  - This is due to the nature of harmonics being integer multiples of each other
+  - Ex. E2 fundamental frequency of 82.41 Hz with a 2nd and 3rd harmonic of 164.82 Hz and 329.64 Hz respectively (where 329.64 Hz also corresponds to the E4 string)
+
+## (3/27/2025)
+- Had 4th TA Meeting
+  - 3rd Wave of PCB orders are due next Monday so we should let him know if/when we upload everything to PCBWay and it's approved
+  - No major updates since the Breadboard Demo except minor advancements in the Frequency Analysis Script
+
+## Week 11
+
+### (3/31/2025)
+- Developed a more detailed flowchart of how the Processing Subsystem/Tuning Algorithm will function
+  - It can be broken down into three subtasks:
+    - Transforming the output from the Vibration-Sensing Subsystem into a frequency spectrum
+    - Determining the frequency of each string from the given frequency spectrum
+    - Calculating how much each motor should turn based on a given string’s frequency
+<img src = "https://github.com/user-attachments/assets/8c4c522f-c64a-406b-bce8-4c0d6d98f969" alt = "Sample Image" width = "700" height = "600">
+
+### (4/1/2025)
+- Determined the exact specifications of the Fast Fourier Transform (FFT) that we'll use to obtain a frequency spectrum
+  - Sampling Rate: 1024 Hz
+  - Sample Size: 1024 Samples
+  - Nyquist Frequency: 512 Hz
+- Since the guitar tuning frequency range is 80 Hz - 330 Hz, a Nyquist frequency of 512 Hz will capture all of the necessary frequencies
+- The frequency spectrum will have a granularity of 1 Hz
+  - &Delta;f = fs / N where fs is the Sampling Rate and N is the Number of Samples
+
+### (4/2/2025)
+- Completed Individual Report
+- Continued to adjust Frequency Analysis Script such that it now filters out cases where there may be multiple frequencies associated with a given string frequency bucket
+  - Ex. If the D3 string bucket contains both the D3 fundamental frequency and an external source of noise, it will run a calculation to see which frequency is closest to the correct frequency and remove all others - thus, each string bucket will only have the one fundamental frequency to consider for tuning 
+
+### (4/3/2025)
+- Had 5th TA Meeting
+  - Will likely have to make a few changes to the PCB for the 4th wave due next Monday
+  - Discussed overall details of the Processing Subsystem/Tuning Algorithm flowchart
+    - FFT details are solid but we need to look more into the motor rotation calculations
+
+## Week 12
+
+### (4//10/2025)
+- Had 6th TA Meeting
+
+## Week 13
+
+### (4/17/2025)
+- Had 7th TA Meeting
+
+### (4/18/2025)
+- Team Contract Assessment Due
+
+## Week 14
+
+### (4/24/2025)
+- Mock Demo
+
+## Week 15
+
+### (4/29/2025)
+- Final Demo
+
+### (5/2/2025)
+- Mock Presentation
+
+## Week 16
+
+### (5/6/2025)
+- Final Presentation
+
+### (5/7/2025)
+- Final Paper Due
+
 ## Helpful Links
 
 ### Datasheets
