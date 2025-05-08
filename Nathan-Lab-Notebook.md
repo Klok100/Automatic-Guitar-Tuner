@@ -284,8 +284,37 @@
 
 ## Week 12
 
+### (4/7/2025)
+- Began to program the microcontroller now that it was soldered for Breadboard usage
+  - Used a JTAG connector to flash the microcontroller with the following pinout
+    | Pin Number | Description  |
+    | ---------- | ------------ |
+    | Pin 7      | NRST         |
+    | Pin 45     | JTMS / SWDIO |
+    | Pin 49     | JTCK / SWCLK |
+    | Pin 50     | JTDI         |
+    | Pin 55     | JTDO         |
+  - Unfortunately unable to locate the chip as a programmable device
+    - Maybe due to incorrect JTAG connections or messy soldering crossing pins
+- Ordered a STM32 Nucleo-144 Dev board for easier testing and programming
+  - Specifically chose this version of the dev board because it uses the STM32H753 microcontroller which is the same H7 Cortex as our actual microcontroller
+  - So it'll hopefully be easy to port over all progess made on the dev board to our PCB design
+
+### (4/9/2025)
+- Looking closer at the motor control calculations, our original thoughts on the motor conflow flow is shown below
+  1. Have the user strum the guitar once and note the frequency of each string
+  2. Turn the motors 15 degrees either clockwise or counterclockwise based on whether the string was sharp or flat
+  3. Have the user strum again after all the motors finished turning and note the new frequency of each string
+  4. Create a linear interpolation of each string's frequency vs degree of rotation
+  5. Use this interpolation to then calculate how much the turn each motor for future strums
+- However, we realized that a string's frequency does not scale linearly with its tension
+  - $f = \frac{1}{2L} \sqrt{ \frac{T}{&mu;} }$ where L is the length of the string, T is the tension of the string, and &mu; is the mass per unit length of the string
+
 ### (4//10/2025)
 - Had 6th TA Meeting
+  - Talked with the TA about the new Dev board that we ordered
+- Discussed possible alternative solutions for the motor control calculations
+  - Could potentially do a ratio calculation since the amount each string is allowed to be out-of-tune by is a whole step in either direction which corresponds to about 180 degrees of rotation
 
 ## Week 13
 
