@@ -260,7 +260,9 @@
     - Transforming the output from the Vibration-Sensing Subsystem into a frequency spectrum
     - Determining the frequency of each string from the given frequency spectrum
     - Calculating how much each motor should turn based on a given string’s frequency
-<img src = "https://github.com/user-attachments/assets/8c4c522f-c64a-406b-bce8-4c0d6d98f969" alt = "Sample Image" width = "700" height = "600">
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/8c4c522f-c64a-406b-bce8-4c0d6d98f969" alt = "Sample Image" width = "800" height = "700">
+  </p>
 
 ### (4/1/2025)
 - Determined the exact specifications of the Fast Fourier Transform (FFT) that we'll use to obtain a frequency spectrum
@@ -377,6 +379,9 @@
   - A string can be out-of-tune by at most a whole step which corresponds to about 180 degrees of rotation for the tuning peg
   - Can create a ratio to map an out-of-tune frequency difference to an amount of degrees rotated to be in tune
   - Then, can determine how long to turn each motor via the following equation: $DurationOfRotation = \frac{DegreeOfRotation}{3} * 1000$
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/d3e7988a-7faa-4d0b-a288-6905f565104e" alt = "Sample Image" width = "800" height = "800">
+  </p>
 
 ### (4/25/2025)
 - Worked to implement the arm_rfft_fast_f32() method which seems to work as intended (below is a frequency spectrum taken with an out-of-tune guitar)
@@ -389,8 +394,11 @@
     
     <img src = "https://github.com/user-attachments/assets/04c97f37-84a2-4c0b-88a6-a896b61b1d11" alt = "Sample Image" width = "400" height = "200">
   </p>
-  - The figure on the left shows the detected frequency peaks when all 6 strings are strummed at once with the G string out of tune
-  - The figure on the right shows the detected frequency peaks when all 6 strings are strummed at once with everything in tune
+- The figure on the left shows the detected frequency peaks when all 6 strings are strummed at once with the G string out of tune
+- The figure on the right shows the detected frequency peaks when all 6 strings are strummed at once with everything in tune
+- Note: unfortunately, we weren't able to get the H-bridges for our motor control to function
+  - Multiple H-bridges were tested both with the microcontroller and manually but nothing seemed to work
+  - The current draw through the H-bridge also seemed sufficient
 
 ## Week 15
 
@@ -419,20 +427,29 @@
     | B3                  | 246.94 Hz                | 243.94 Hz - 249.94 Hz    | 248 Hz                      | Success | 
     | E4                  | 329.63 Hz                | 326.63 Hz - 332.63 Hz    | 329 Hz                      | Success |
     - Note that the frequencies obtained via the microcontroller processing subsystem are not only within the ±3 Hz range but also the ±12 Cents range
+- Attempted to flash our PCB with the finalized microcontroller code but the programmer was unable to locate our chip as a programmable device
 
 ### (4/29/2025)
-- Final Demo
+- Completed Final Demo
+  - Processing Subsystem was able to accurately detect each string's frequency when all 6 were strummed at once and also send out the correct motor control signals from the microcontroller
+  - Completed the demo using our dev board with the STM32H753 microcontroller since we weren't able to successfully flash our PCB
+  - Our physical design was complete and able to easily attaached and removed from a guitar
 
 ### (5/2/2025)
-- Mock Presentation
+- Completed Mock Presentation (Slides can be found [here](https://docs.google.com/presentation/d/1YZ9aDIgzMchjUdUq0ANk6EUFnHSx6i4nLlUX_31I9No/edit?usp=sharing))
+  - Presentation delivery feedback was positive
+    - Just be careful of using too many "ums" and "uhs"
+  - Should be using the actual Grainger slide template instead though
+  - Need to add a video of the system working along with the R&V tables
 
 ## Week 16
 
 ### (5/6/2025)
-- Final Presentation
+- Completed Final Presentation (Updated Slides can be found [here](https://docs.google.com/presentation/d/1uwvnbpcpJETUpdRG_x2eOsW6RKY6nreKlF5R9wPtcf8/edit?slide=id.p1#slide=id.p1))
+- Started working on Final Paper
 
 ### (5/7/2025)
-- Final Paper Due
+- Completed Final Paper (Can be found [here](https://docs.google.com/document/d/1M_Fy4vRLyLkMaIoSb2M3p_HTVJKlA_oGeW5ZN1c_aPk/edit?usp=sharing))
 
 ## Helpful Links
 
@@ -467,5 +484,9 @@
 - [STM32 DC Motor Control Guide](https://youtu.be/TvacIiEwWFw?si=H48CacmLXv1JakhO)
 
 ### Similar Projects
-
-### Misc
+- Spring 2020 Team 71 "Fully Automated Guitar Tuner":
+  - [Project Proposal](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=16908)
+  - [Design Document](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=18170)
+  - [Final Paper](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=18265)
+- Fall 2014 Team 10 "Automatic Guitar Tuner":
+  - [Design Review](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=6275)
