@@ -223,6 +223,234 @@
 ### (3/11/2025)
 - Could not finish Breadboard Demo as our microcontroller arrived too late to attempt to program
 
+## Week 9
+- Spring Break
+
+## Week 10
+
+## (3/25/2025)
+- Continued to fine tune the Frequency Analysis Script while the microcontroller was being soldered together for breadboard use and programmability
+- Determined specific out-of-tune boundaries for the guitar such that each string can only be a whole step out-of-tune in either direction (Sharp or Flat)
+  - This is so that there is no string tuning interference when looking specifically at the G3 and B3 string - with the whole step out-of-tune limit in place, in the worst case the G3 string will be Sharp up to an A3 and the B3 string will be Flat to an A3, both of which can be non-inclusive frequencies to prevent any overlap
+  - The full list of string tuning boundaries is shown below:
+    | Guitar String | Tuning Note Range | Tuning Frequency Range | Exact In-Tune Frequency |
+    | ------------- | ----------------- | ---------------------- | ----------------------- | 
+    | E2            | D2 - F#2          | 73.42 Hz - 92.50 Hz    | 82.41 Hz                |
+    | A2            | G2 - B2           | 98 Hz - 123.47 Hz      | 110 Hz                  | 
+    | D3            | C3 - E3           | 130.81 Hz - 164.81 Hz  | 146.83 Hz               |
+    | G3            | F3 - A3           | 174.61 Hz - 220 Hz     | 196 Hz                  | 
+    | B3            | A3 - C#4          | 220.01 Hz - 277.18 Hz  | 246.94 Hz               |
+    | E4            | D4 - F#4          | 293.66 Hz - 369.99 Hz  | 329.64 Hz               |
+
+## (3/26/2025)
+- Adjusted the Harmonic Reduction Algorithm such that the E2 string no longer removes the E4 string fundamental frequency
+  - This is due to the nature of harmonics being integer multiples of each other
+  - Ex. E2 fundamental frequency of 82.41 Hz with a 2nd and 3rd harmonic of 164.82 Hz and 329.64 Hz respectively (where 329.64 Hz also corresponds to the E4 string)
+
+## (3/27/2025)
+- Had 4th TA Meeting
+  - 3rd Wave of PCB orders are due next Monday so we should let him know if/when we upload everything to PCBWay and it's approved
+  - No major updates since the Breadboard Demo except minor advancements in the Frequency Analysis Script
+
+## Week 11
+
+### (3/31/2025)
+- Developed a more detailed flowchart of how the Processing Subsystem/Tuning Algorithm will function
+  - It can be broken down into three subtasks:
+    - Transforming the output from the Vibration-Sensing Subsystem into a frequency spectrum
+    - Determining the frequency of each string from the given frequency spectrum
+    - Calculating how much each motor should turn based on a given string’s frequency
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/8c4c522f-c64a-406b-bce8-4c0d6d98f969" alt = "Sample Image" width = "800" height = "700">
+  </p>
+
+### (4/1/2025)
+- Determined the exact specifications of the Fast Fourier Transform (FFT) that we'll use to obtain a frequency spectrum
+  - Sampling Rate: 1024 Hz
+  - Sample Size: 1024 Samples
+  - Nyquist Frequency: 512 Hz
+- Since the guitar tuning frequency range is 80 Hz - 330 Hz, a Nyquist frequency of 512 Hz will capture all of the necessary frequencies
+- The frequency spectrum will have a granularity of 1 Hz
+  - &Delta;f = fs / N where fs is the Sampling Rate and N is the Number of Samples
+
+### (4/2/2025)
+- Completed Individual Report
+- Continued to adjust Frequency Analysis Script such that it now filters out cases where there may be multiple frequencies associated with a given string frequency bucket
+  - Ex. If the D3 string bucket contains both the D3 fundamental frequency and an external source of noise, it will run a calculation to see which frequency is closest to the correct frequency and remove all others - thus, each string bucket will only have the one fundamental frequency to consider for tuning 
+
+### (4/3/2025)
+- Had 5th TA Meeting
+  - Will likely have to make a few changes to the PCB for the 4th wave due next Monday
+  - Discussed overall details of the Processing Subsystem/Tuning Algorithm flowchart
+    - FFT details are solid but we need to look more into the motor rotation calculations
+
+## Week 12
+
+### (4/7/2025)
+- Began to program the microcontroller now that it was soldered for Breadboard usage
+  - Used a JTAG connector to flash the microcontroller with the following pinout
+    | Pin Number | Description  |
+    | ---------- | ------------ |
+    | Pin 7      | NRST         |
+    | Pin 45     | JTMS / SWDIO |
+    | Pin 49     | JTCK / SWCLK |
+    | Pin 50     | JTDI         |
+    | Pin 55     | JTDO         |
+  - Unfortunately unable to locate the chip as a programmable device
+    - Maybe due to incorrect JTAG connections or messy soldering crossing pins
+- Ordered a STM32 Nucleo-144 Dev board for easier testing and programming
+  - Specifically chose this version of the dev board because it uses the STM32H753 microcontroller which is the same H7 Cortex as our actual microcontroller
+  - So it'll hopefully be easy to port over all progess made on the dev board to our PCB design
+
+### (4/9/2025)
+- Looking closer at the motor control calculations, our original thoughts on the motor conflow flow is shown below
+  1. Have the user strum the guitar once and note the frequency of each string
+  2. Turn the motors 15 degrees either clockwise or counterclockwise based on whether the string was sharp or flat
+  3. Have the user strum again after all the motors finished turning and note the new frequency of each string
+  4. Create a linear interpolation of each string's frequency vs degree of rotation
+  5. Use this interpolation to then calculate how much the turn each motor for future strums
+- However, we realized that a string's frequency does not scale linearly with its tension
+  - $f = \frac{1}{2L} \sqrt{ \frac{T}{&mu;} }$ where L is the length of the string, T is the tension of the string, and &mu; is the mass per unit length of the string
+
+### (4//10/2025)
+- Had 6th TA Meeting
+  - Talked with the TA about the new Dev board that we ordered
+- Discussed possible alternative solutions for the motor control calculations
+  - Could potentially do a ratio calculation since the amount each string is allowed to be out-of-tune by is a whole step in either direction which corresponds to about 180 degrees of rotation
+
+## Week 13
+
+### (4/15/2025)
+- STM32 Nucleo-144 Dev board arrived
+- Able to successfully locate and program the board
+- Went through many video tutorials to set up the board and acheive basic program functionality
+  - [STM32 Hello World Tutorial Guide](https://youtu.be/8S78Ih4SaiE?si=6Xj7R8O0bKv14Vj-)
+  - [STM32 UART Guide](https://youtu.be/ttzu-j77jPg?si=z0fbmpthiJIxOkbx)
+  - [STM32 ADC Single-Input Mode Guide](https://youtu.be/q2R8jqOQuj8?si=JdF-AFtofjSvF06V)
+  - [STM32 ADC Differential Mode Guide](https://youtu.be/E47Alkv0Uko?si=PrPSLkQyITmeg1vr)
+  - ^the piezoelectric sensor outputs a differential voltage signal
+- Able to read in the voltage signals from the piezoelectric sensor in real-time
+  - The voltage levels are currently quite small in the millivolt range so may have to amplify it in order to obtain a clear frequency spectrum 
+
+### (4/16/2025)
+- Learned how to control the sampling frequency of the ADC instead of polling as fast as possible
+  - Now able to properly sample at 1024 Hz to eventually take the FFT
+  - [STM32 ADC Sampling Frequency Guide](https://youtu.be/OePcprDTicU?si=xn8gZiH0Sa4o6Fy_)
+- We can feed the output from the piezoelectric sensor into a constantly updated buffer of size 1024 to match the 1024 samples of the FFT
+
+### (4/17/2025)
+- Had 7th TA Meeting
+  - Discussed progress made using the Dev board
+    - Able to read in values from the piezoelectric sensor at a set sampling rate of 1024 Hz and store it in a buffer of size 1024 for the FFT
+  - Prepare for the Mock Demo next TA meeting - the professor will also be there
+
+### (4/18/2025)
+- Completed Team Contract Assessment
+- Began researching different FFT methods for the STM32 microcontroller
+  - Can use the CMSIS library for built in FFT methods (https://github.com/ARM-software/CMSIS_4/tree/master)
+    - Most online guides still use CMSIS_4 so I'll dive deeper into that even though CMSIS_5 is available
+  - Two possible functions for taking the FFT
+    - arm_cfft_q15() + arm_cmplx_mag_q15()
+      - Takes in the voltage signal buffer and outputs a complex buffer array which is then converted into its magnitude for the FFT
+    - arm_rfft_fast_f32()
+      - Takes in the voltage signal buffer and outputs a real and complex combined buffer that's twice the length of the input buffer
+        - Ex. outputBuffer[0] is the real part and outputBuffer[1] is the complex part of the output
+      - The magnitude is the manually taken via $mag[i] = \sqrt(outputBuffer[i]^2 + outputBuffer[i + 1]^2)$
+
+## Week 14
+
+### (4/22/2025)
+- Can use STM32CubeMonitor to graphicallly visualize the input (Voltage vs Time) and output (Frequency Spectrum) buffers
+- arm_cfft_q15() + arm_cmplx_mag_q15() method outputs some type of frequency spectrum but it does not appear to be correct
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/c414456f-2eaf-4ed5-875c-1bdbb70d43f9" alt = "Sample Image" width = "400" height = "300">
+  </p>
+- When directly tapping the sensor, there are some visible peaks in both the Voltage and Frequency, but the actual guitar strum just produces a bunch of seemingly random noise
+- Manually testing this method via a hardcoded sin wave seems to work though
+  
+### (4/24/2025)
+- Completed Mock Demo
+  - Able to read in the Voltage signals from the sensor but the FFT output using the Complex Fourier Transform doesn't seem to work
+  - Professor suggested amplifying the Voltage input to more clearly see the values
+  - TA said we should try constantly printing out the values just to see how they change over time vs the STM32 CubeMonitor output as the refresh rate may be different
+  - Also will try implementing the arm_rfft_fast_f32() method as well
+- Updated the motor control calculations along with the Tuning Algorithm flowchart
+  - Motors rotate at 0.5 RPM (3 degrees of rotation per second)
+  - A string can be out-of-tune by at most a whole step which corresponds to about 180 degrees of rotation for the tuning peg
+  - Can create a ratio to map an out-of-tune frequency difference to an amount of degrees rotated to be in tune
+  - Then, can determine how long to turn each motor via the following equation: $DurationOfRotation = \frac{DegreeOfRotation}{3} * 1000$
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/d3e7988a-7faa-4d0b-a288-6905f565104e" alt = "Sample Image" width = "800" height = "800">
+  </p>
+
+### (4/25/2025)
+- Worked to implement the arm_rfft_fast_f32() method which seems to work as intended (below is a frequency spectrum taken with an out-of-tune guitar)
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/29bf25c0-8a93-48c1-9020-ab71df0459bc" alt = "Sample Image" width = "450" height = "200">
+  </p>
+- From here, I was able to locate all of the frequency peaks and port over the Tuning Algorithm that was initially developed in Python
+  <p align="center">
+    <img src = "https://github.com/user-attachments/assets/7f9c2ae6-023c-4e42-9e2a-8701a7285f5b" alt = "Sample Image" width = "400" height = "200">
+    
+    <img src = "https://github.com/user-attachments/assets/04c97f37-84a2-4c0b-88a6-a896b61b1d11" alt = "Sample Image" width = "400" height = "200">
+  </p>
+- The figure on the left shows the detected frequency peaks when all 6 strings are strummed at once with the G string out of tune
+- The figure on the right shows the detected frequency peaks when all 6 strings are strummed at once with everything in tune
+- Note: unfortunately, we weren't able to get the H-bridges for our motor control to function
+  - Multiple H-bridges were tested both with the microcontroller and manually but nothing seemed to work
+  - The current draw through the H-bridge also seemed sufficient
+
+## Week 15
+
+### (4/28/2025)
+- Completed RVs for Vibration-Sensing Subsystem
+  - Must be able sense to vibrational frequency of the guitar and accurately output a signal within ±12 cents of the original frequency
+  - Tested using ADALM 2000's Spectrum Analyzer to accurately obtain readings from the piezoelectric sensor when all 6 strings were strummed at once
+    | Guitar String Notes | Exact Tuning Frequencies | Tuning Frequencies ±12 Cents | Obtained Tuning Frequencies | Results |
+    | ------------------- | ------------------------ | ---------------------------- | --------------------------- | ------- | 
+    | E2                  | 81.41 Hz                 | 81.84 Hz - 82.98 Hz          | 82.8125 Hz                  | Success | 
+    | A2                  | 110 Hz                   | 109.23 Hz - 110.77 Hz        | 109.375 Hz                  | Success | 
+    | D3                  | 146.83 Hz                | 145.81 Hz - 147.85 Hz        | 146.875 Hz                  | Success | 
+    | G3                  | 196 Hz                   | 194.64 Hz - 197.36 Hz        | 195.313 Hz                  | Success | 
+    | B3                  | 246.94 Hz                | 245.22 Hz - 248.66 Hz        | 246.875 Hz                  | Success | 
+    | E4                  | 329.63 Hz                | 327.34 Hz - 331.92 Hz        | 331.25 Hz                   | Success | 
+    - Note that the Frequency-Cents Formula is just a ratio between two frequencies: $Cents = 1200 * log_2(\frac{f1}{f2})$ where $f1$ and $f2$ are the two frequencies in comparison
+- Completed RVs for the Processing Subsystem
+  - The processing system must analyze frequencies with at least ±3 Hz precision in the 80 Hz – 350 Hz range
+  - Tested by using the microcontroller programmed with the developed tuning algorithm to determine the frequencies from the guitar when all 6 strings were strummed at once
+    | Guitar String Notes | Exact Tuning Frequencies | Tuning Frequencies ±3 Hz | Obtained Tuning Frequencies | Results |
+    | ------------------- | ------------------------ | ------------------------ | --------------------------- | ------- | 
+    | E2                  | 81.41 Hz                 | 79.41 Hz - 85.41 Hz      | 82 Hz                       | Success | 
+    | A2                  | 110 Hz                   | 107 Hz - 113 Hz          | 110 Hz                      | Success | 
+    | D3                  | 146.83 Hz                | 143.83 Hz - 149.83 Hz    | 147 Hz                      | Success | 
+    | G3                  | 196 Hz                   | 193 Hz - 199 Hz          | 195 Hz                      | Success | 
+    | B3                  | 246.94 Hz                | 243.94 Hz - 249.94 Hz    | 248 Hz                      | Success | 
+    | E4                  | 329.63 Hz                | 326.63 Hz - 332.63 Hz    | 329 Hz                      | Success |
+    - Note that the frequencies obtained via the microcontroller processing subsystem are not only within the ±3 Hz range but also the ±12 Cents range
+- Attempted to flash our PCB with the finalized microcontroller code but the programmer was unable to locate our chip as a programmable device
+
+### (4/29/2025)
+- Completed Final Demo
+  - Processing Subsystem was able to accurately detect each string's frequency when all 6 were strummed at once and also send out the correct motor control signals from the microcontroller
+  - Completed the demo using our dev board with the STM32H753 microcontroller since we weren't able to successfully flash our PCB
+  - Our physical design was complete and able to easily attaached and removed from a guitar
+
+### (5/2/2025)
+- Completed Mock Presentation (Slides can be found [here](https://docs.google.com/presentation/d/1YZ9aDIgzMchjUdUq0ANk6EUFnHSx6i4nLlUX_31I9No/edit?usp=sharing))
+  - Presentation delivery feedback was positive
+    - Just be careful of using too many "ums" and "uhs"
+  - Should be using the actual Grainger slide template instead though
+  - Need to add a video of the system working along with the R&V tables
+
+## Week 16
+
+### (5/6/2025)
+- Completed Final Presentation (Updated Slides can be found [here](https://docs.google.com/presentation/d/1uwvnbpcpJETUpdRG_x2eOsW6RKY6nreKlF5R9wPtcf8/edit?slide=id.p1#slide=id.p1))
+- Started working on Final Paper
+
+### (5/7/2025)
+- Completed Final Paper (Can be found [here](https://docs.google.com/document/d/1M_Fy4vRLyLkMaIoSb2M3p_HTVJKlA_oGeW5ZN1c_aPk/edit?usp=sharing))
+
 ## Helpful Links
 
 ### Datasheets
@@ -237,7 +465,28 @@
   - Signal Amplifier: [LM386N-1](https://www.ti.com/lit/ds/symlink/lm386.pdf)
 
 ### Microcontroller Guides 
+- [STM32H7B0xB Datasheet](https://github.com/user-attachments/files/19664395/STM32H7B0RB.Datasheet.pdf)
+- [STM32 Arduino IDE Setup](https://community.st.com/t5/stm32-mcus/how-to-program-and-debug-the-stm32-using-the-arduino-ide/ta-p/608514)
+- [JTAG Pinout](https://developer.arm.com/documentation/dui0499/d/ARM-DSTREAM-Target-Interface-Connections/ARM-JTAG-20)
+- [STM32 Boot Mode](https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf)
+- [STLINK-V3-MINIE User Guide](https://www.st.com/resource/en/user_manual/dm00813040.pdf)
+- [STM32H753 Datasheet](https://www.st.com/resource/en/datasheet/stm32h753vi.pdf)
+- [STM32H7 Nucleo Board User Manual](https://www.st.com/resource/en/user_manual/um2407-stm32h7-nucleo144-boards-mb1364-stmicroelectronics.pdf)
+- [STM32H7 Nucleo Board Schematic](https://www.st.com/resource/en/schematic_pack/mb1364-h753zi-c01_schematic.pdf)
+- [STM32H753 User Manual](https://www.st.com/resource/en/reference_manual/rm0433-stm32h742-stm32h743753-and-stm32h750-value-line-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+- [STM32 Hello World Tutorial Guide](https://youtu.be/8S78Ih4SaiE?si=6Xj7R8O0bKv14Vj-)
+- [STM32 UART Guide](https://youtu.be/ttzu-j77jPg?si=z0fbmpthiJIxOkbx)
+- [STM32 ADC Single-Input Mode Guide](https://youtu.be/q2R8jqOQuj8?si=JdF-AFtofjSvF06V)
+- [STM32 ADC Differential Mode Guide](https://youtu.be/E47Alkv0Uko?si=PrPSLkQyITmeg1vr)
+- [STM32 ADC Sampling Frequency Guide](https://youtu.be/OePcprDTicU?si=xn8gZiH0Sa4o6Fy_)
+- [STM32 ADC DMA & Double Buffering Guide](https://youtu.be/zlGSxZGwj-E?si=3pYIkpMInkBLTX57)
+- [STM32 FFT Guide](https://youtu.be/d1KvgOwWvkM?si=Z_g0ZRvIfNrDz3Zj)
+- [STM32 DC Motor Control Guide](https://youtu.be/TvacIiEwWFw?si=H48CacmLXv1JakhO)
 
 ### Similar Projects
-
-### Misc
+- Spring 2020 Team 71 "Fully Automated Guitar Tuner":
+  - [Project Proposal](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=16908)
+  - [Design Document](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=18170)
+  - [Final Paper](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=18265)
+- Fall 2014 Team 10 "Automatic Guitar Tuner":
+  - [Design Review](https://courses.grainger.illinois.edu/ece445/getfile.asp?id=6275)
